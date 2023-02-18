@@ -27,9 +27,6 @@ public class Gmail extends Email {
         // If the inbox is full, move the oldest mail in the inbox to trash and add the new mail to inbox.
         if(Inbox.size()==inboxCapacity) {
             //System.out.println(Inbox.size()+" "+inboxCapacity);
-            if (Trash.size() == inboxCapacity) {
-                Trash.remove(0);
-            }
             Trash.add(Inbox.get(0));
             Inbox.remove(0);
         }
@@ -45,7 +42,7 @@ public class Gmail extends Email {
         // Each message is distinct
         // If the given message is found in any mail in the inbox, move the mail to trash, else do nothing
          for(int i=0;i<Inbox.size();i++){
-             if(Inbox.get(i).message==message){
+             if(Inbox.get(i).message.equals(message)){
                  Inbox.remove(i);
                  break;
              }
