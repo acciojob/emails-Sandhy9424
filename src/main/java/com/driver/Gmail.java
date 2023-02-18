@@ -23,20 +23,18 @@ public class Gmail extends Email {
         Inbox=new ArrayList<>();
         Trash=new ArrayList<>();
     }
-    public void receiveMail(Date date, String sender, String message){
+    public void receiveMail(Date date, String sender, String message) {
         // If the inbox is full, move the oldest mail in the inbox to trash and add the new mail to inbox.
-        if(Inbox.size()==inboxCapacity) {
+        if (Inbox.size() == inboxCapacity) {
             //System.out.println(Inbox.size()+" "+inboxCapacity);
             Trash.add(Inbox.get(0));
             Inbox.remove(0);
         }
-
-            Inbox.add(new mail(date,sender,message));
-        }
+        Inbox.add(new mail(date, sender, message));
         // It is guaranteed that:
         // 1. Each mail in the inbox is distinct.
         // 2. The mails are received in non-decreasing order. This means that the date of a new mail is greater than equal to the dates of mails received already.
-
+    }
 
     public void deleteMail(String message){
         // Each message is distinct
@@ -74,18 +72,16 @@ public class Gmail extends Email {
     public int findMailsBetweenDates(Date start, Date end){
         //find number of mails in the inbox which are received between given dates
         int count=0;
-        boolean b=false;
-        for(int i=0;i<Inbox.size();i++){
-            if(Inbox.get(i).date==start) {
-                b = true;
-            }
-            if(b==true){
+        for(int i=0;i<Inbox.size();i++) {
+          //  System.out.println(Inbox.get(i).date+" "+Inbox.get(i).date.compareTo(start) +" "+Inbox.get(i).date.compareTo(end));
+            if (Inbox.get(i).date.compareTo(start) == 0) {
+                while (Inbox.get(i).date.compareTo(end) != 0) {
+                    count++;
+                    i++;
+                }
                 count++;
             }
-            if(Inbox.get(i).date==end) {
-                b = false;
-            }
-            }
+        }
         return count;
         }
         //It is guaranteed that start date <= end date
