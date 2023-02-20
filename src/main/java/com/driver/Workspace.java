@@ -50,10 +50,13 @@ public class Workspace extends Gmail {
         Collections.sort(m, (a, b) -> a.getEndTime().compareTo(b.getEndTime()));
         int c = 0;
         LocalTime et = m.get(0).getEndTime();
-        for (Meeting n : m) {
-            if (n.getStartTime().compareTo(et) < 0) {
+        if(!m.isEmpty()){
+            c++;
+        }
+        for (int i=1;i<m.size();i++) {
+            if (m.get(i).getStartTime().compareTo(et) > 0) {
                 c++;
-                et = n.getEndTime();
+                et = m.get(i).getEndTime();
             }
         }
         return c;
