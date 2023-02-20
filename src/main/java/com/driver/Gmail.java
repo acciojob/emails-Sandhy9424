@@ -21,8 +21,9 @@ public class Gmail extends Email {
         // If the inbox is full, move the oldest mail in the inbox to trash and add the new mail to inbox.
         if (Inbox.size() == inboxCapacity) {
             //System.out.println(Inbox.size()+" "+inboxCapacity);
-            Trash.add(Inbox.get(0));
+            mail k=Inbox.get(0);
             Inbox.remove(0);
+            Trash.add(k);
         }
         Inbox.add(new mail(date, sender, message));
         // It is guaranteed that:
@@ -52,9 +53,7 @@ public class Gmail extends Email {
             return null;
         }
         // Else, return the message of the latest mail present in the inbox
-         else{
              return Inbox.get(Inbox.size()-1).message;
-        }
     }
 
     public String findOldestMessage(){
@@ -63,9 +62,7 @@ public class Gmail extends Email {
             return null;
         }
         // Else, return the message of the oldest mail present in the inbox
-        else{
             return Inbox.get(0).message;
-        }
     }
 
     public int findMailsBetweenDates(Date start, Date end) {

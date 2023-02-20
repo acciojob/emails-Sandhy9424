@@ -48,13 +48,13 @@ public class Email {
             else if(s.charAt(i)<='9'&&s.charAt(i)>='0'){
                 c=true;
             }
-            else if(s.charAt(i)<=96&&s.charAt(i)>=46){
+            else {
                 d=true;
             }
         }
-        if(a==false||b==false||c==false||d==false){
-            return false;
+        if(a&&b&&c&&d){
+            return true;
         }
-        return true;
+        return false;
     }
 }
