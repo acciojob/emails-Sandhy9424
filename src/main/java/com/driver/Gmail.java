@@ -68,18 +68,18 @@ public class Gmail extends Email {
         }
     }
 
-    public int findMailsBetweenDates(Date start, Date end){
+    public int findMailsBetweenDates(Date start, Date end) {
         //find number of mails in the inbox which are received between given dates
-        int count=0;
-        for(int i=0;i<Inbox.size();i++) {
-          //  System.out.println(Inbox.get(i).date+" "+Inbox.get(i).date.compareTo(start) +" "+Inbox.get(i).date.compareTo(end));
-            if (Inbox.get(i).date.compareTo(start) >= 0&&Inbox.get(i).date.compareTo(end) <= 0) {
+        int count = 0;
+        for (int i = 0; i < Inbox.size(); i++) {
+            //  System.out.println(Inbox.get(i).date+" "+Inbox.get(i).date.compareTo(start) +" "+Inbox.get(i).date.compareTo(end));
+            if ((Inbox.get(i).date.compareTo(start) >= 0) && (Inbox.get(i).date.compareTo(end) <= 0)) {
                 count++;
             }
         }
         return count;
-        }
         //It is guaranteed that start date <= end date
+    }
 
     public int getInboxSize(){
         // Return number of mails in inbox
