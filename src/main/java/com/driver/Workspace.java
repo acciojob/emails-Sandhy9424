@@ -46,40 +46,40 @@ public class Workspace extends Gmail {
 //           }
 //           return c;
 //         }
-//        ArrayList<Meeting> m = new ArrayList<>(calendar);
-//        Collections.sort(m, (a, b) -> a.getEndTime().compareTo(b.getEndTime()));
-//        int c = 0;
-//        LocalTime et = m.get(0).getEndTime();
-//        for (Meeting n : m) {
-//            if (n.getStartTime().compareTo(et) < 0) {
-//                c++;
-//                et = n.getEndTime();
-//            }
-//        }
-//        return c;
-        ArrayList<Pair<LocalTime, Integer>> endTimes = new ArrayList<>();
-
-        for (int i = 0; i < calendar.size(); i++) {
-            endTimes.add(Pair.of(calendar.get(i).getEndTime(), i));
-        }
-
-        Collections.sort(endTimes);
-
-        LocalTime time_limit = endTimes.get(0).getLeft();
-
-        int cnt = 0;
-        if(!endTimes.isEmpty()) {
-            cnt += 1;
-        }
-
-        for (int i = 1; i < endTimes.size(); i++) {
-            if (calendar.get(endTimes.get(i).getRight()).getStartTime().compareTo(time_limit) > 0) {
-
-                cnt += 1;
-                time_limit = endTimes.get(i).getLeft();
+        ArrayList<Meeting> m = new ArrayList<>(calendar);
+        Collections.sort(m, (a, b) -> a.getEndTime().compareTo(b.getEndTime()));
+        int c = 0;
+        LocalTime et = m.get(0).getEndTime();
+        for (Meeting n : m) {
+            if (n.getStartTime().compareTo(et) < 0) {
+                c++;
+                et = n.getEndTime();
             }
         }
-
-        return cnt;
+        return c;
+//        ArrayList<Pair<LocalTime, Integer>> endTimes = new ArrayList<>();
+//
+//        for (int i = 0; i < calendar.size(); i++) {
+//            endTimes.add(Pair.of(calendar.get(i).getEndTime(), i));
+//        }
+//
+//        Collections.sort(endTimes);
+//
+//        LocalTime time_limit = endTimes.get(0).getLeft();
+//
+//        int cnt = 0;
+//        if(!endTimes.isEmpty()) {
+//            cnt += 1;
+//        }
+//
+//        for (int i = 1; i < endTimes.size(); i++) {
+//            if (calendar.get(endTimes.get(i).getRight()).getStartTime().compareTo(time_limit) > 0) {
+//
+//                cnt += 1;
+//                time_limit = endTimes.get(i).getLeft();
+//            }
+//        }
+//
+//        return cnt;
     }
 }
